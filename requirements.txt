@@ -1,7 +1,7 @@
 langchain==0.1.16
 langchain-openai==0.1.11
 openai==1.68.0
-python-dotenv>=1.0.0
+python-dotenv==1.0.1
 streamlit==1.29.0
 plotly==5.18.0
 pandas==2.1.3
