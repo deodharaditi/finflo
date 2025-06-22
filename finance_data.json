@@ -7,10 +7,26 @@
       "category": "Food",
       "description": "",
       "account": "checking"
+    },
+    {
+      "id": 2,
+      "date": "2025-06-16",
+      "amount": -2000.0,
+      "category": "Other",
+      "description": "Particle Physics",
+      "account": "checking"
+    },
+    {
+      "id": 3,
+      "date": "2025-06-22",
+      "amount": -2000.0,
+      "category": "Food",
+      "description": "Bol",
+      "account": "checking"
     }
   ],
   "accounts": {
-    "checking": 4999.99,
+    "checking": 999.99,
     "savings": 10000.0
   },
   "budgets": {

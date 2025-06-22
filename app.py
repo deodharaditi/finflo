@@ -357,7 +357,7 @@ def show_dashboard():
         # Pie chart of spending by category
         if any(amount > 0 for amount in spending_by_category.values()):
             # Orange color scale for charts
-            color_scale = ['#29A63C', '#43B94F', '#5CCC62', '#76DF75', '#90F288', '#A9FFA0']
+            color_scale = ['#14532D', '#166534', '#15803D', '#16A34A', '#22C55E', '#4ADE80']
             
             fig_pie = px.pie(
                 values=list(spending_by_category.values()),
@@ -694,20 +694,16 @@ Friendly but professional, data-driven, and focused on essentials with bullet po
         return f"I'm sorry, I encountered an error while processing your request: {str(e)}"
 
 def show_transaction_form(form_key="transaction_form"):
-    """Display the transaction form with a unique key.
-    
-    Args:
-        form_key (str): A unique key for the form to prevent duplicate form errors
-    """
+    """Display the transaction form with a unique key."""
     with st.form(key=form_key):
         col1, col2 = st.columns([1, 2])
         with col1:
             transaction_type = st.radio("Type", ["Income", "Expense"], horizontal=True)
         with col2:
             amount = st.number_input("Amount", min_value=0.01, step=0.01, format="%.2f")
-        
+
         description = st.text_input("Description")
-        
+
         col1, col2 = st.columns(2)
         with col1:
             category = st.selectbox(
@@ -716,7 +712,9 @@ def show_transaction_form(form_key="transaction_form"):
             )
         with col2:
             date = st.date_input("Date", value=datetime.now())
-        
+
+        account = st.selectbox("Account", options=["checking", "savings"])  # <-- Add this line
+
         # Form actions
         col1, col2 = st.columns([1, 1])
         with col1:
@@ -725,7 +723,7 @@ def show_transaction_form(form_key="transaction_form"):
             if st.form_submit_button("❌ Cancel", type="secondary", use_container_width=True):
                 st.session_state.show_transaction_form = False
                 st.rerun()
-        
+
         if submitted:
             try:
                 transaction = {
@@ -733,7 +731,8 @@ def show_transaction_form(form_key="transaction_form"):
                     "amount": float(amount) if transaction_type == "Income" else -float(amount),
                     "description": description,
                     "category": category,
-                    "date": date.strftime("%Y-%m-%d")
+                    "date": date.strftime("%Y-%m-%d"),
+                    "account": account  # <-- Ensure this is included
                 }
                 data_manager.add_transaction(transaction)
                 st.success("Transaction saved successfully!")
@@ -741,6 +740,7 @@ def show_transaction_form(form_key="transaction_form"):
                 st.rerun()
             except Exception as e:
                 st.error(f"Error saving transaction: {str(e)}")
+
 
 def show_profile_form():
     """Display the comprehensive profile edit form."""
