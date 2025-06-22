@@ -548,7 +548,7 @@ def get_ai_response(user_input: str, chat_history: list = None) -> str:
                 chat_history_context += f"{role}: {msg['content']}\n\n"
         
         # Calculate financial ratios
-        monthly_income = profile.get('employment', {}).get('monthly_income', 0)
+        monthly_income = profile.get('monthly_income', 5000)
         savings_rate = (monthly_summary['savings'] / monthly_income * 100) if monthly_income > 0 else 0
         
         # Only include financial context if we have meaningful data

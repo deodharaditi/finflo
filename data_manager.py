@@ -17,7 +17,7 @@ class UserProfile(BaseModel):
     # Investment preferences removed - using simpler model now
     financial_goals: List[str] = []
     retirement_age: int = 65
-    monthly_income: float = 0.0
+    monthly_income: float = 10000.0
     monthly_expenses: float = 0.0
 
 class Transaction(BaseModel):
@@ -248,7 +248,7 @@ class DataManager:
         """Get summary of income and expenses for the current month."""
         try:
             current_month = datetime.now().strftime('%Y-%m')
-            monthly_data = {'income': 0.0, 'expenses': 0.0}
+            monthly_data = {'income': 10000.0, 'expenses': 0.0}
             
             for t in self.data['transactions']:
                 if t.get('date', '').startswith(current_month):
