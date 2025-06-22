@@ -6,13 +6,19 @@ from typing import List, Optional, Tuple
 import pickle
 import pdfplumber
 
+from huggingface_hub import login
+login(token=os.getenv("HF_TOKEN"))
+
+from sentence_transformers import SentenceTransformer
+model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2", use_auth_token=os.getenv("HF_TOKEN"))
+
 class RAGService:
     def __init__(self, knowledge_base_dir: str = "knowledge_base"):
         """Initialize the RAG service with a knowledge base directory."""
         self.knowledge_base_dir = knowledge_base_dir
         self.vector_store_path = "faiss_index"
         self.chunks_file = "document_chunks.pkl"
-        self.embedding_model = SentenceTransformer('all-MiniLM-L6-v2')
+        self.embedding_model = SentenceTransformer('all-MiniLM-L6-v2', use_auth_token=os.getenv("HF_TOKEN"))
         self.vector_store = None
         self.document_chunks = []
         

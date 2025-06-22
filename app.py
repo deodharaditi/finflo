@@ -46,139 +46,229 @@ if 'show_profile_form' not in st.session_state:
 if 'show_transaction_form' not in st.session_state:
     st.session_state.show_transaction_form = False
 
-# Custom CSS for better styling
 st.markdown("""
     <style>
-    .main {
-        background-color: #f8f9fa;
-    }
-    .sidebar .sidebar-content {
-        background-color: #f8f9fa;
-    }
-    .stApp {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 20px;
-    }
-    .stTextInput>div>div>input {
-        border-radius: 20px;
-        padding: 12px 20px;
-        border: 2px solid #e0e0e0;
-    }
-    /* Base button styles */
-    /* Main action buttons */
-    .stButton>button, [data-testid="stButton"]>button {
-        width: 100% !important;
-        border-radius: 20px !important;
-        background: #FF6B35 !important;
-        color: white !important;
-        font-weight: 500 !important;
-        border: none !important;
-        padding: 8px 16px !important;
-        margin: 4px 0 !important;
-        cursor: pointer !important;
-        transition: all 0.3s ease !important;
-        box-shadow: none !important;
-        background-image: none !important;
-        min-height: auto !important;
-        height: auto !important;
-    }
-    
-    /* Fix for number input buttons */
-    button[data-baseweb="button"][aria-label="Decrease"],
-    button[data-baseweb="button"][aria-label="Increase"] {
-        width: 30px !important;
-        height: 30px !important;
-        padding: 0 !important;
-        margin: 0 4px !important;
-        border-radius: 4px !important;
-        background: #f0f0f0 !important;
-        color: #333 !important;
-    }
-    .stButton>button:hover {
-        background: #E65100 !important;  /* Darker orange on hover */
-        box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3) !important;
-        transform: translateY(-1px) !important;
-    }
-    
-    /* Style secondary buttons */
-    .stButton>button[kind="secondary"] {
-        background: white;
-        color: #FFA07A;
-        border: 2px solid #FFA07A;
-    }
-    .stButton>button[kind="secondary"]:hover {
-        background: #FFF3E0;
-    }
-    
-    /* Style sliders */
-    .stSlider>div>div>div>div {
-        background-color: #FFA07A !important;
-    }
-    
-    /* Style progress bars */
-    .stProgress>div>div>div>div {
-        background-color: #FFA07A;
-    }
-    /* Make logo sticky in sidebar */
-    .sidebar .stImage>div>div>img {
-        position: sticky;
-        top: 0;
-        background: white;
-        padding: 1rem 0;
-        z-index: 100;
-        margin-bottom: 1rem;
-    }
-    
-    /* Chart styling */
-    .stPlotlyChart {
-        --primary-color: #FF6B35;
-    }
-    
-    /* Update chart colors */
-    .js-plotly-plot .scatterlayer .trace .lines {
-        stroke: #FF6B35 !important;
-    }
-    .js-plotly-plot .barlayer .trace .points path {
-        fill: #FF6B35 !important;
-    }
-    .js-plotly-plot .legend .traces .legendtoggle {
-        fill: #FF6B35 !important;
-    }
-    .metric-card {
-        background: white;
-        border-radius: 15px;
-        padding: 20px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        margin-bottom: 20px;
-    }
-    .progress-container {
-        background: #f0f2f6;
-        border-radius: 10px;
-        height: 10px;
-        margin: 10px 0;
-    }
-    .progress-bar {
-        height: 100%;
-        border-radius: 10px;
-        background: linear-gradient(90deg, #00c6ff, #0072ff);
-        transition: width 0.5s ease;
-    }
-    .achievement-badge {
-        background: #f0f8ff;
-        border: 1px solid #0072ff;
-        border-radius: 15px;
-        padding: 10px 15px;
-        margin: 5px;
-        display: inline-block;
-        font-size: 14px;
-    }
-    .achievement-badge.locked {
-        opacity: 0.5;
-        background: #f5f5f5;
-    }
-    </style>
+/* Main layout background */
+.stApp {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #111826;
+    color: #ffffff;
+}
+
+/* Sidebar */
+.sidebar .sidebar-content {
+    background-color: #111826;
+    color: #ffffff;
+}
+
+.main {
+    background-color: #111826;
+    color: #ffffff;
+}
+
+/* Text Input */
+.stTextInput>div>div>input {
+    border-radius: 20px;
+    padding: 12px 20px;
+    border: 2px solid #29A63C;
+    background-color: #111826;
+    color: #ffffff;
+}
+
+/* Buttons */
+.stButton>button, [data-testid="stButton"]>button {
+    width: 100% !important;
+    border-radius: 20px !important;
+    background: #29A63C !important;
+    color: #ffffff !important;
+    font-weight: 500 !important;
+    border: none !important;
+    padding: 8px 16px !important;
+    margin: 4px 0 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: none !important;
+    background-image: none !important;
+}
+
+.stButton>button:hover {
+    background: #208C31 !important;
+    box-shadow: 0 4px 12px rgba(41, 166, 60, 0.3) !important;
+    transform: translateY(-1px) !important;
+}
+
+.stButton>button[kind="secondary"] {
+    background: #111826;
+    color: #29A63C;
+    border: 2px solid #29A63C;
+}
+
+.stButton>button[kind="secondary"]:hover {
+    background: #1a1f2d;
+}
+
+/* Number input +/- buttons */
+button[data-baseweb="button"][aria-label="Decrease"],
+button[data-baseweb="button"][aria-label="Increase"] {
+    width: 30px !important;
+    height: 30px !important;
+    padding: 0 !important;
+    margin: 0 4px !important;
+    border-radius: 4px !important;
+    background: #2f3540 !important;
+    color: #ffffff !important;
+}
+
+/* Slider - visual track, knob, label */
+.stSlider > div {
+    color: #29A63C !important;
+}
+
+.stSlider [role="slider"] {
+    background-color: #29A63C !important;
+    border: 2px solid #29A63C !important;
+    box-shadow: 0 0 0 3px rgba(41, 166, 60, 0.3) !important;
+}
+
+.stSlider .st-b7 {
+    background-color: #29A63C !important;
+}
+
+[data-testid="stSliderValue"],
+span[data-testid="stSliderValue"] {
+    color: #29A63C !important;
+    font-weight: bold;
+}
+
+/* Progress Bars */
+.stProgress>div>div>div>div {
+    background-color: #29A63C !important;
+}
+
+/* Multiselect tag styling */
+.stMultiSelect [data-baseweb="tag"] {
+    background-color: #29A63C !important;
+    color: #fff !important;
+    border: none !important;
+}
+.stMultiSelect [data-baseweb="tag"] span {
+    color: #fff !important;
+}
+.stMultiSelect [data-baseweb="tag"] svg {
+    color: #fff !important;
+}
+
+/* Radio Buttons */
+[data-baseweb="radio"] label[aria-checked="true"] {
+    color: #29A63C !important;
+}
+[data-baseweb="radio"] div[aria-checked="true"] {
+    border-color: #29A63C !important;
+    background: #29A63C !important;
+}
+[data-baseweb="radio"] svg {
+    color: #29A63C !important;
+}
+
+/* Sticky Sidebar Logo */
+.sidebar .stImage>div>div>img {
+    position: sticky;
+    top: 0;
+    background: #111826;
+    padding: 1rem 0;
+    z-index: 100;
+    margin-bottom: 1rem;
+}
+
+/* Charts */
+.stPlotlyChart {
+    --primary-color: #29A63C;
+    background-color: #111826;
+}
+.js-plotly-plot .scatterlayer .trace .lines {
+    stroke: #29A63C !important;
+}
+.js-plotly-plot .barlayer .trace .points path {
+    fill: #29A63C !important;
+}
+.js-plotly-plot .legend .traces .legendtoggle {
+    fill: #29A63C !important;
+}
+
+/* Metric Cards */
+.metric-card {
+    background: #1e2533;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.05);
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+/* Progress Bars in Dashboard */
+.progress-container {
+    background: #2c3644;
+    border-radius: 10px;
+    height: 10px;
+    margin: 10px 0;
+}
+.progress-bar {
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #29A63C, #1f8a2c);
+    transition: width 0.5s ease;
+}
+
+/* Achievement Badge */
+.achievement-badge {
+    background: #182230;
+    border: 1px solid #29A63C;
+    border-radius: 15px;
+    padding: 10px 15px;
+    margin: 5px;
+    display: inline-block;
+    font-size: 14px;
+    color: #ffffff;
+}
+.achievement-badge.locked {
+    opacity: 0.5;
+    background: #2c2f36;
+}
+            
+/* Make inactive track neutral dark */
+[data-baseweb="slider"] div[role="presentation"] > div:first-child {
+    background-color: #2c2f36 !important;
+}
+
+/* Make active track (progress bar) green */
+[data-baseweb="slider"] div[role="presentation"] > div:first-child > div {
+    background-color: #29A63C !important;
+}
+
+/* Make slider thumb green */
+[data-baseweb="slider"] [role="slider"] {
+    background-color: #29A63C !important;
+    border-color: #29A63C !important;
+}
+
+/* Make active label above the thumb green */
+[data-baseweb="slider"] [data-testid="slider-value"] {
+    color: #29A63C !important;
+    font-weight: 600;
+}
+
+/* Ensure all labels/ticks are green */
+[data-baseweb="slider"] div[role="presentation"] span {
+    color: #29A63C !important;
+}
+
+</style>
+
 """, unsafe_allow_html=True)
+
+
 
 # Initialize data manager
 data_manager = DataManager()
@@ -267,7 +357,7 @@ def show_dashboard():
         # Pie chart of spending by category
         if any(amount > 0 for amount in spending_by_category.values()):
             # Orange color scale for charts
-            color_scale = ['#FF6B35', '#FF8C5A', '#FFAD80', '#FFCEA6', '#FFE0CC', '#FFF2E6']
+            color_scale = ['#29A63C', '#43B94F', '#5CCC62', '#76DF75', '#90F288', '#A9FFA0']
             
             fig_pie = px.pie(
                 values=list(spending_by_category.values()),
@@ -307,7 +397,7 @@ def show_dashboard():
                 x=df_budget['Category'],
                 y=df_budget['Budget'],
                 name='Budget',
-                marker_color='#FFB88C',  # Lighter orange
+                marker_color='#05F26C',  # Lighter green
                 opacity=0.6
             ))
             
@@ -316,7 +406,7 @@ def show_dashboard():
                 x=df_budget['Category'],
                 y=df_budget['Amount'],
                 name='Spent',
-                marker_color='#FF6B35',  # Main orange
+                marker_color='#29A63C',  # Main green
                 width=0.4
             ))
             
@@ -1039,7 +1129,7 @@ def show_sidebar():
     """Display the sidebar navigation."""
     with st.sidebar:
         # Add logo at the top of the sidebar
-        st.image("logo.png", use_column_width=True)
+        st.image("logo.png", use_container_width=True)
         st.markdown("---")
         
         # Navigation
