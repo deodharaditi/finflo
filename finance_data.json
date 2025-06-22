@@ -10,23 +10,47 @@
     },
     {
       "id": 2,
-      "date": "2025-06-16",
-      "amount": -2000.0,
-      "category": "Other",
-      "description": "Particle Physics",
+      "date": "2025-06-22",
+      "amount": -40.0,
+      "category": "Food",
+      "description": "Wow Tikka",
       "account": "checking"
     },
     {
       "id": 3,
       "date": "2025-06-22",
-      "amount": -2000.0,
-      "category": "Food",
-      "description": "Bol",
+      "amount": 100.0,
+      "category": "Other",
+      "description": "Splitwise",
+      "account": "checking"
+    },
+    {
+      "id": 4,
+      "date": "2025-06-16",
+      "amount": 2000.0,
+      "category": "Entertainment",
+      "description": "Spear",
+      "account": "checking"
+    },
+    {
+      "id": 5,
+      "date": "2025-06-22",
+      "amount": -650.0,
+      "category": "Housing",
+      "description": "Rent",
+      "account": "checking"
+    },
+    {
+      "id": 6,
+      "date": "2025-06-22",
+      "amount": -300.0,
+      "category": "Transportation",
+      "description": "Gas",
       "account": "checking"
     }
   ],
   "accounts": {
-    "checking": 999.99,
+    "checking": 6109.99,
     "savings": 10000.0
   },
   "budgets": {

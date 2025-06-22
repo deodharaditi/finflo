@@ -16,7 +16,7 @@ load_dotenv()
 
 # Set page config with theme
 st.set_page_config(
-    page_title="💰 FinFluent",
+    page_title="FinFluent",
     page_icon="💰",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -406,7 +406,7 @@ def show_dashboard():
                 x=df_budget['Category'],
                 y=df_budget['Amount'],
                 name='Spent',
-                marker_color='#29A63C',  # Main green
+                marker_color='#14532D',  # Main green
                 width=0.4
             ))
             
